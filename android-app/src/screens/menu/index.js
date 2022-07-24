@@ -2,20 +2,21 @@ import { View } from "react-native";
 import { Button, HStack } from "@react-native-material/core";
 import { Routes, useNavigate } from "react-router-native";
 
-const HomeMenu = ({ childRoutes, ...others }) => {
+const Menu = ({ childRoutes, navigation }) => {
+  const { home, specials } = navigation;
   const navigate = useNavigate();
   return (
     <View>
       <HStack>
         <Button
-          onPress={() => navigate("/home/*")}
+          onPress={() => navigate(home)}
           color="#4E4F50"
           tintColor="white"
           title="Clasics"
           style={{ flex: 1, margin: 3, marginLeft: 0 }}
         />
         <Button
-          onPress={() => navigate("/home/specials")}
+          onPress={() => navigate(specials)}
           color="darkorange"
           tintColor="black"
           title="Specials"
@@ -26,4 +27,4 @@ const HomeMenu = ({ childRoutes, ...others }) => {
     </View>
   );
 };
-export default HomeMenu;
+export default Menu;

@@ -11,7 +11,7 @@ const useBackAction = (initialPath) => {
   const before = useRef();
 
   const backAction = (actualPath) => {
-    if (actualPath === "/*") Alert.alert(...message);
+    if (actualPath === "/") Alert.alert(...message);
     else navigate(initialPath + initializedHistory.current[before.current]);
     if (initializedHistory.current.length > 1) initializedHistory.current.pop();
     return true;

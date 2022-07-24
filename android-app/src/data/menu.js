@@ -1,4 +1,4 @@
-const menuData = {
+const menu_data = {
   clasics: [
     {
       img: "picture.jpg",
@@ -105,4 +105,4 @@ const menuData = {
   ],
 };
 
-export { menuData };
+export { menu_data };
