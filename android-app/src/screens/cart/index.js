@@ -1,5 +1,5 @@
 import { Button, Icon, IconButton } from "@react-native-material/core";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 import { useNavigate } from "react-router-native";
 
 const Cart = ({
@@ -11,24 +11,24 @@ const Cart = ({
   removeFromCart,
 }) => {
   const { payment } = navigation;
-  const cart_is_empty = cart.length < 1 && (
-    <Text style={styles.empty_cart}>{styles.texts.empty_cart}</Text>
-  );
+  const cart_is_empty = cart.length < 1;
   const navigate = useNavigate();
-  const shouldIncrement = (item) => {
-    if (item.amount > 1) return subtractOneFromCart(item.title);
-    return removeFromCart(item.title);
+  const shouldIncrement = ({ amount, title }) => {
+    if (amount > 1) return subtractOneFromCart(title);
+    return removeFromCart(title);
   };
 
   return (
     <View style={{ margin: 10, flex: 1, marginBottom: 40 }}>
-      {cart_is_empty}
+      {cart_is_empty && (
+        <Text style={styles.empty_cart}>{styles.texts.empty_cart}</Text>
+      )}
       <FlatList
         data={cart}
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text>{item.title}</Text>
-            <Text>{item.img}</Text>
+            <Image style={{ width: 150, height: 150 }} source={item.img} />
             <Text>{item.price}</Text>
             <View style={styles.button_container}>
               <IconButton
@@ -50,12 +50,15 @@ const Cart = ({
         {styles.texts.total} {total}
       </Text>
       <Button
+        disabled={cart_is_empty ? true : false}
         onPress={() => navigate(payment)}
         title={styles.texts.button_title}
       />
     </View>
   );
 };
+export default Cart;
+
 const styles = StyleSheet.create({
   card: {
     paddingVertical: 10,
@@ -83,4 +86,3 @@ const styles = StyleSheet.create({
     total: "Total:",
   },
 });
-export default Cart;

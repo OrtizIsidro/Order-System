@@ -14,8 +14,7 @@ const TopAppBar = () => {
 };
 export default TopAppBar;
 
-
-//styles / config
+//styles || config
 const styles = StyleSheet.create({
   icon_magnify: { name: "magnify", color: "white", size: 24 },
   icon_menu: { name: "menu", color: "white", size: 24 },

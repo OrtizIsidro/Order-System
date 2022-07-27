@@ -7,13 +7,20 @@ const FlavorsMenu = ({ data, addToCart }) => {
       style={{ marginBottom: 50 }}
       data={data}
       renderItem={({ item }) => (
-        <View style={{ flex: 1, margin: 10 }}>
+        <View style={{ flex: 1, margin: 20 }}>
           <Text>{item.title}</Text>
           <Text>{item.description}</Text>
-          <View>
-            <Image source={{ uri: item.img, height: 100, width: 100 }} />
-          </View>
-          <Text>botton de sumar al carrito, imaginatelo por ahora plis</Text>
+          <Image
+            style={{
+              width: 300,
+              height: 300,
+              alignSelf: "center",
+              marginVertical: 10,
+            }}
+            source={
+              item.img || require("../../assets/menu_images/muzzarella.jpg")
+            }
+          />
           <Text>{item.precio}</Text>
           <Text>{item.puntaje}</Text>
           <Button
@@ -22,7 +29,9 @@ const FlavorsMenu = ({ data, addToCart }) => {
               addToCart({
                 title: item.title,
                 price: item.precio,
-                img: item.img,
+                img:
+                  item.img ||
+                  require("../../assets/menu_images/muzzarella.jpg"),
               })
             }
           />

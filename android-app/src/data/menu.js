@@ -1,7 +1,7 @@
 const menu_data = {
   clasics: [
     {
-      img: "../assets/menu_images/jamon_y_morron.jpg",
+      img: require("../assets/menu_images/jamon_y_morron.jpg"),
       title: "jamon y morrones",
       description: "queso muzzarella, una capa de jamon, y arriba morrones",
       precio: 1000,
@@ -9,27 +9,27 @@ const menu_data = {
     },
     {
       title: "jamon y anana",
-      img: "../assets/menu_images/jamon_y_anana.jpg",
+      img: require("../assets/menu_images/jamon_y_anana.jpg"),
       description: "queso muzzarella, una capa de jamon, y arriba anana",
       precio: 1000,
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "napolitana",
       description: "queso muzzarella, tomate y ajo",
       precio: 900,
       puntaje: 5,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "muzzarella con jamon",
       description: "queso muzzarella y jamon",
       precio: 1200,
       puntaje: 10,
     },
     {
-      img: "../assets/menu_images/muzzarella.jpg",
+      img: require("../assets/menu_images/muzzarella.jpg"),
       title: "muzzarella",
       description: "muzzarella equisde",
       precio: 700,
@@ -38,7 +38,7 @@ const menu_data = {
   ],
   specials: [
     {
-      img: "picture.jpg",
+      img: "",
       title: "Napolitana con jamon y morron",
       description:
         "una capa de jamon, seguidos por queso muzzarella, tomates con ajo, y por ultimo morrones",
@@ -46,7 +46,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Palmito con jamon y morron",
       description:
         "queso muzzarella, seguido con palmitos, por encima jamon, y por ultimo morrones ahumados",
@@ -54,14 +54,14 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "jamon con anana",
       description: "queso muzzarella, seguido por jamon, y por ultimo anana",
       precio: 900,
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Jamon con palmitos",
       description:
         "queso muzzarella, seguido por palmitos, y por ultimo palmitos",
@@ -69,7 +69,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Jamon con tomate y huevo",
       description:
         "queso muzarrella, seguiguido por jamon con tomate, y la ultima capa de huevo",
@@ -77,7 +77,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Fugazzeta con jamon",
       description:
         "queso muzzarella, seguido por el jamon, y una ultima capa de cebolla cocida",
@@ -85,7 +85,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Napolitana con jamon",
       description:
         "queso muzzarella, seguido por una capa de jamon, y por ultimo tomates en rodajas con ajo por encima ",
@@ -93,7 +93,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Palmitos con jamon y morrones",
       description:
         "queso muzzarella, seguido por una capa de jamon, luego palmitos y por ultimo morrones",
@@ -101,7 +101,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Jamon y huevo",
       description:
         "queso muzzarella, arriba jamon, y por ultimo huevo duro por encima de este",
@@ -109,7 +109,7 @@ const menu_data = {
       puntaje: 10,
     },
     {
-      img: "picture.jpg",
+      img: "",
       title: "Mitad y Mitad a eleccion",
       description:
         "elegis la mitad y mitad que quieras a eleccion, el precio puede variar, dependiendo de los gustos que selecciones",

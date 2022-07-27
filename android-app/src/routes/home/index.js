@@ -1,12 +1,12 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Menu from "../../screens/menu";
-import Cart from "../../screens/order_info";
+import Cart from "../../screens/cart";
 import Delivery from "../../screens/delivery";
 import Payment from "../../screens/payment";
 import useBackAction from "../../hooks/useBackAction";
 import { useState } from "react";
-import { Route, Routes } from "react-router-native";
-import { View, StatusBar, StyleSheet } from "react-native";
+import { Route, Routes, useLocation } from "react-router-native";
+import { View, StatusBar, StyleSheet, Keyboard } from "react-native";
 import { asignPropsToMenuCategorys } from "./childs";
 import { IconComponentProvider } from "@react-native-material/core";
 import { TopAppBar, BottomAppBar } from "../../components/app_bar";
@@ -19,6 +19,7 @@ import {
 
 const INITIAL_PATH = "/home";
 const HomeRouter = ({ navigation, paths }) => {
+  const { pathname } = useLocation();
   const [cart, setCart] = useState([]);
   const CartProps = {
     total: calculateTotal(cart),
@@ -58,10 +59,12 @@ const HomeRouter = ({ navigation, paths }) => {
               element={<Cart {...CartProps} navigation={navigation} />}
             />
             <Route path={paths.delivery} element={<Delivery />} />
-            <Route path={paths.payment} element={<Payment />} />
+            <Route path={paths.payment} element={<Payment cart={cart} />} />
           </Routes>
         </View>
-        <BottomAppBar amount={cart.length} navigation={navigation} />
+        {pathname !== navigation.payment && (
+          <BottomAppBar amount={cart.length} navigation={navigation} />
+        )}
       </View>
     </IconComponentProvider>
   );
