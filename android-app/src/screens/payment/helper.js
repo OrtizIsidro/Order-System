@@ -1,5 +1,6 @@
 import {
   Button,
+  HStack,
   Icon,
   IconButton,
   TextInput,
@@ -10,10 +11,10 @@ import CheckBox from "expo-checkbox";
 
 const CartItems = ({ items }) => {
   return items.map((item) => (
-    <View key={nanoid()} style={{ padding: 20 }}>
+    <HStack key={nanoid()} style={{ padding: 20, alignItems: "center" }}>
       <Text>{item.title}</Text>
-      <IconButton icon={<Icon name="cancel" />} />
-    </View>
+      <IconButton icon={<Icon name="close" size={14} />} />
+    </HStack>
   ));
 };
 const MercadoPago = () => {
@@ -23,6 +24,7 @@ const MercadoPago = () => {
         Aca te dejamos el link de pago, cuando el pago este realizado, se nos
         notificara automaticamente!
       </Text>
+      <Button title="link de pago" />
     </View>
   );
 };
@@ -32,6 +34,10 @@ const Efectivo = ({ setAmount }) => {
     <View>
       <Text>Con cuanto pagas?</Text>
       <TextInput onChangeText={(value) => setAmount(value)} />
+      <HStack>
+        <Button title="Confirmar" />
+        <Button title="Cancelar" />
+      </HStack>
     </View>
   );
 };

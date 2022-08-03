@@ -4,33 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>sender</title>
   </head>
   <body>
-    <h1>ingresa tu texto aqui</h1>
-    <div id="container"></div>
-    <input type="text" id="inputMsg" />
-    <button id="buttonPrime">realizar el pedido</button>
+    <form id="form">
+      <input type="text" placeholder="introduce un texto" id="input" />
+      <button>submit</button>
+    </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
-      let message = "";
 
-      const input = document.getElementById("inputMsg");
-      const container = document.getElementById("container");
-      const button = document.getElementById("buttonPrime");
-      socket.on("responseToOrder", (msg) => {
-        const h1 = document.createElement("h1");
-        h1.textContent = msg;
-        container.appendChild(h1);
+      var form = document.getElementById("form");
+      var input = document.getElementById("input");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (input.value) {
+          const socketID = socket.id;
+          socket.emit("order", {
+            nombre: input.value,
+            calle: "salvador lentini",
+            numeracion: "244",
+            referencias: "casa negra",
+            entreCalles: "virrey aviles y virrey arredondo",
+            cart: [{ title: "hola", amount: 2 }],
+            total: 100,
+            socketID,
+          });
+          input.value = "";
+        }
       });
-      input.addEventListener("change", (e) => (message = e.target.value));
-      button.addEventListener("click", () => {
-        input.value = "";
-        const id = socket.id;
-        socket.emit("order", { message, id });
-        return;
-      });
+      socket.on("responseToOrder", (msg) => console.log(msg));
     </script>
   </body>
 </html>

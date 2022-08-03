@@ -13,7 +13,7 @@ const Cart = ({
   const { payment } = navigation;
   const cart_is_empty = cart.length < 1;
   const navigate = useNavigate();
-  const shouldIncrement = ({ amount, title }) => {
+  const shouldRemove = ({ amount, title }) => {
     if (amount > 1) return subtractOneFromCart(title);
     return removeFromCart(title);
   };
@@ -31,12 +31,15 @@ const Cart = ({
             <Image style={{ width: 150, height: 150 }} source={item.img} />
             <Text>{item.price}</Text>
             <View style={styles.button_container}>
+              {/* SUBTRACT BUTTON */}
               <IconButton
-                onPress={() => shouldIncrement(item)}
+                onPress={() => shouldRemove(item)}
                 style={styles.button}
                 icon={<Icon {...styles.icon_minus} />}
               />
               <Text style={styles.text}>{item.amount}</Text>
+
+              {/* INCREMENT BUTTON */}
               <IconButton
                 onPress={() => addOneToCart(item.title)}
                 style={styles.button}

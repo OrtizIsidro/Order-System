@@ -1,29 +1,56 @@
 import { Button, HStack, TextInput } from "@react-native-material/core";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import useWebsocket from "../../hooks/useWebSocket";
 import { CartItems, CustomCheckBox, Efectivo, MercadoPago } from "./helper";
-import { SOCKET_URL } from "@env";
+import { useNavigate } from "react-router-native";
 
-const Payment = ({ cart }) => {
+const Payment = ({
+  cart,
+  total,
+  socket,
+  navigation,
+  setOrderRequested,
+  requestOrder,
+}) => {
   const [paymentMethod, setPaymentMethod] = useState("Efectivo");
-  const [paymentAmount, setPaymentAmount] = useState();
-  const [value, setValue] = useState("");
-  const { socket, connected } = useWebsocket(SOCKET_URL);
-  if (connected) socket.on("chat", (msg) => setValue(msg));
+  const [paymentAmount, setPaymentAmount] = useState(900);
+  const navigate = useNavigate();
+  const { delivery } = navigation;
+  const form = useRef({
+    nombre: "",
+    calle: "",
+    numeracion: "",
+    referencias: "",
+    entreCalles: "",
+    cart,
+    total,
+    socketID: null,
+    paymentAmount,
+  });
+  const handleOrder = (orderCart) => {
+    requestOrder(orderCart);
+    setOrderRequested(true);
+    navigate(delivery);
+  };
+
+  useEffect(() => {
+    if (!socket) return;
+    const socketID = socket.id;
+    form.current.socketID = socketID;
+  }, [socket]);
   return (
     <ScrollView>
       <Text>Payment Screen</Text>
       <Text>nombre</Text>
-      <TextInput onChangeText={(value) => socket.emit("chat", value)} />
+      <TextInput onChangeText={(value) => (form.current.nombre = value)} />
       <Text>calle</Text>
-      <TextInput value={value} />
+      <TextInput onChangeText={(value) => (form.current.calle = value)} />
       <Text>numeracion</Text>
-      <TextInput />
+      <TextInput onChangeText={(value) => (form.current.numeracion = value)} />
       <Text>entre calles</Text>
-      <TextInput />
+      <TextInput onChangeText={(value) => (form.current.entreCalles = value)} />
       <Text>referencia</Text>
-      <TextInput />
+      <TextInput onChangeText={(value) => (form.current.referencias = value)} />
       <View style={{ minHeight: 150, padding: 10, marginTop: 10 }}>
         <CustomCheckBox
           currentActive={paymentMethod}
@@ -39,14 +66,7 @@ const Payment = ({ cart }) => {
       <HStack>
         <CartItems items={cart} />
       </HStack>
-      {paymentMethod == "Efectivo" ? (
-        <View>
-          <Button title="Confirmar" />
-          <Button title="Cancelar" />
-        </View>
-      ) : (
-        <Button title="Link de Pago" />
-      )}
+      <Button onPress={() => handleOrder(form.current)} title="test pedido" />
     </ScrollView>
   );
 };

@@ -12,7 +12,7 @@ function useWebsocket(url) {
       return setConnected(false);
     });
     setSocket(newSocket);
-  }, [url]);
+  }, []);
   return { connected, socket };
 }
 export default useWebsocket;
