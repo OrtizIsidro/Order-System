@@ -2,6 +2,7 @@ import { Button } from "@react-native-material/core";
 import { FlatList, Text, View, Image } from "react-native";
 
 const FlavorsMenu = ({ data, addToCart }) => {
+  const DEFAULT_IMAGE = require("../assets/menu_images/muzzarella.jpg");
   return (
     <FlatList
       style={{ marginBottom: 50 }}
@@ -17,9 +18,7 @@ const FlavorsMenu = ({ data, addToCart }) => {
               alignSelf: "center",
               marginVertical: 10,
             }}
-            source={
-              item.img || require("../../assets/menu_images/muzzarella.jpg")
-            }
+            source={item.img || DEFAULT_IMAGE}
           />
           <Text>{item.precio}</Text>
           <Text>{item.puntaje}</Text>
@@ -29,9 +28,7 @@ const FlavorsMenu = ({ data, addToCart }) => {
               addToCart({
                 title: item.title,
                 price: item.precio,
-                img:
-                  item.img ||
-                  require("../../assets/menu_images/muzzarella.jpg"),
+                img: item.img || DEFAULT_IMAGE,
               })
             }
           />

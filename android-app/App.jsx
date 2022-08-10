@@ -1,6 +1,6 @@
 import { NativeRouter, Route, Routes } from "react-router-native";
 import { HomeRouter } from "./src/routes";
-import SplashScreen from "./src/screens/splash_screen";
+import SplashScreen from "./src/screens/SplashScreen";
 
 const App = () => {
   const navigation = {
