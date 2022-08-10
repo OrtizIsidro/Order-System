@@ -1,19 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
 
-const OrderOverview = ({ orders, accepted = false, handleOrder }) => {
+const OrderOverview = ({ orders, accepted, openModal }) => {
   return orders.map((order, index) => (
     <Button
       variant="contained"
       key={index}
       style={{
-        backgroundColor: accepted ? "green" : "#D4214E",
+        backgroundColor: accepted === "accepted" ? "green" : "#D4214E",
         marginRight: 50,
         padding: 10,
         display: "flex",
         flexDirection: "column",
         width: "100%",
       }}
-      onClick={() => handleOrder(order.socketID, accepted, order)}
+      onClick={() => openModal(order.socketID, order)}
     >
       <Box width="100%" display={"flex"} justifyContent={"space-around"}>
         <Typography variant="h6" fontWeight={600}>

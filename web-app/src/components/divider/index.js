@@ -1,8 +1,8 @@
-const Divider = () => {
+const Divider = ({ width = 50 }) => {
   return (
     <div
       style={{
-        width: 50,
+        width,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

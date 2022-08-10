@@ -1,8 +1,7 @@
 const router = require("express").Router();
-const Order = require("../../models/order");
+const { all, awaiting } = require("./controller");
 
-router.get("/all", async (req, res) => {
-  const orders = await Order.find();
-  return res.json(orders);
-});
+router.get("/all", all);
+router.get("/awaiting", awaiting);
+
 module.exports = router;
