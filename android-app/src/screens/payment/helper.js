@@ -5,8 +5,9 @@ import {
   IconButton,
   TextInput,
 } from "@react-native-material/core";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { nanoid } from "nanoid";
+import "react-native-get-random-values";
 import CheckBox from "expo-checkbox";
 
 const CartItems = ({ items }) => {
@@ -17,6 +18,7 @@ const CartItems = ({ items }) => {
     </HStack>
   ));
 };
+
 const MercadoPago = () => {
   return (
     <View>

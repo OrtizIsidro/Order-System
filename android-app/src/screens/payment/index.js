@@ -4,14 +4,7 @@ import { ScrollView, Text, View } from "react-native";
 import { CartItems, CustomCheckBox, Efectivo, MercadoPago } from "./helper";
 import { useNavigate } from "react-router-native";
 
-const Payment = ({
-  cart,
-  total,
-  socket,
-  navigation,
-  setOrderRequested,
-  requestOrder,
-}) => {
+const Payment = ({ cart, total, socket, navigation, requestOrder }) => {
   const [paymentMethod, setPaymentMethod] = useState("Efectivo");
   const [paymentAmount, setPaymentAmount] = useState(900);
   const navigate = useNavigate();
@@ -29,7 +22,6 @@ const Payment = ({
   });
   const handleOrder = (orderCart) => {
     requestOrder(orderCart);
-    setOrderRequested(true);
     navigate(delivery);
   };
 

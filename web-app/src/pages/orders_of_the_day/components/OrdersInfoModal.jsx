@@ -1,6 +1,8 @@
 import { Box, Chip, Divider, Typography } from "@mui/material";
 import Modal from "../../../components/modal";
+import CenterItem from "../../../styledComponents/CenterItem";
 import OrderInfo from "../styles/OrderInfo";
+import SpaceBetween from "../styles/SpaceBetween";
 
 const OrdersInfoModal = ({ children, show, closeModal }) => {
   return (
@@ -56,11 +58,25 @@ const OrdersInfoModal = ({ children, show, closeModal }) => {
                 <Typography>Amount</Typography>
               </Box>
             </Box>
-            <Box display={"flex"}>
-              <Typography variant="h6" fontWeight={600}>
-                Total
-              </Typography>
-              <Box></Box>
+            <Box>
+              <SpaceBetween>
+                <Typography variant="h6" fontWeight={600}>
+                  Total
+                </Typography>
+                <Typography>$1000</Typography>
+              </SpaceBetween>
+              <SpaceBetween>
+                <Typography>Pago del cliente</Typography>
+                <Typography>$1000</Typography>
+              </SpaceBetween>
+              <Box>
+                <CenterItem>
+                  <Typography>Tarjeta</Typography>
+                </CenterItem>
+                <CenterItem>
+                  <Typography>Efectivo</Typography>
+                </CenterItem>
+              </Box>
             </Box>
           </Box>
         </Box>

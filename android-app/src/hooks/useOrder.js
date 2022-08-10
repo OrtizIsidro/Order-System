@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { SOCKET_URL } from "@env";
-import useWebsocket from "../useWebSocket";
+import useWebsocket from "./useWebSocket";
 
-const useOrder = (connected, socket) => {
+const useOrder = () => {
   const { socket, connected } = useWebsocket(SOCKET_URL);
   const [orderTaken, setOrderTaken] = useState(false);
   const [orderRequested, setOrderRequested] = useState(false);

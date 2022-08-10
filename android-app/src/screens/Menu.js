@@ -1,7 +1,8 @@
 import { View } from "react-native";
 import { Button, HStack } from "@react-native-material/core";
 import { Route, Routes, useNavigate } from "react-router-native";
-import FlavorsMenu from "../../components/flavors_menu";
+import FlavorsMenu from "../components/FlavorsMenu";
+import { menu_data } from "../data/menu";
 
 const Menu = ({ navigation, paths, addToCart }) => {
   const { home, specials } = navigation;

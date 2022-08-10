@@ -6,9 +6,8 @@ const OrderInfo = ({ calle, entreCalle, numeracion, numero }) => {
   return (
     <Box margin={2}>
       <Box display={"flex"}>
-        <Box>
-          <AccountCircleIcon />
-        </Box>
+        <AccountCircleIcon />
+
         <Divider />
         <Box>
           <Typography>{calle}</Typography>
@@ -17,13 +16,9 @@ const OrderInfo = ({ calle, entreCalle, numeracion, numero }) => {
         </Box>
       </Box>
       <Box display={"flex"}>
-        <Box>
-          <PhoneAndroidIcon />
-        </Box>
+        <PhoneAndroidIcon />
         <Divider />
-        <Box>
-          <Typography variant="subtitle2">{numero}</Typography>
-        </Box>
+        <Typography variant="subtitle2">{numero}</Typography>
       </Box>
     </Box>
   );

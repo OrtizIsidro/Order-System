@@ -6,7 +6,7 @@ import AcceptedOrders from "./components/orders/Accepted";
 const OrdersOfTheDay = () => {
   const [states, handlers] = useOrders();
   const [orders, acceptedOrders] = states;
-  const [handleOrder] = handlers;
+  const [handleOrder, OrderOnTheWay] = handlers;
   return (
     <>
       <NewOrders orders={orders} handleOrders={handleOrder} />
@@ -14,6 +14,7 @@ const OrdersOfTheDay = () => {
       <AcceptedOrders
         acceptedOrders={acceptedOrders}
         handleOrders={handleOrder}
+        setOrderOnTheWay={OrderOnTheWay}
       />
     </>
   );

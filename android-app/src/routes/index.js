@@ -1,2 +1,2 @@
-import HomeRouter from "./home";
+import HomeRouter from "./HomeRouter";
 export { HomeRouter };

@@ -1,14 +1,15 @@
-import TopAppBar from "./top";
-import BottomAppBar from "./bottom";
+import TopAppBar from "./TopAppBar";
+import BottomAppBar from "./BottomAppBar";
 import { IconComponentProvider } from "@react-native-material/core";
-import { StyleSheet, View } from "react-native";
-import ModalOrderStatus from "../modalOrderStatus";
+import { StatusBar, StyleSheet, View } from "react-native";
+import ModalOrderStatus from "../ModalOrderStatus";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useLocation } from "react-router-native";
 import { useState } from "react";
 
-const AppBar = ({ navigation: { payment }, children }) => {
+const AppBar = ({ navigation, children, accepted, cart }) => {
   const { pathname } = useLocation();
+  const { payment } = navigation;
   const [show, setShow] = useState(false);
   const isP = pathname !== payment;
   return (
@@ -16,12 +17,12 @@ const AppBar = ({ navigation: { payment }, children }) => {
       <View style={styles.home_container}>
         <TopAppBar />
         <View style={styles.routes_container}>{children}</View>
-        {!isP && <BottomAppBar amount={cart.length} navigation={navigation} />}
+        <BottomAppBar amount={cart.length} navigation={navigation} />
       </View>
       <ModalOrderStatus
         hide={() => setShow(false)}
         show={show}
-        accepted={response.current.accepted}
+        accepted={accepted}
         navigation={navigation}
       />
     </IconComponentProvider>

@@ -11,8 +11,7 @@ const useOrders = () => {
   const [acceptedOrders, setAcceptedOrders] = useState([]);
 
   // HANLDERS
-  const handleOrder = (socketID, accepted, order) => {
-    console.log("run");
+  const handleOrderAcceptation = (socketID, accepted, order) => {
     socket.emit("isOrderAccepted", {
       socketID,
       accepted,
@@ -21,11 +20,17 @@ const useOrders = () => {
     setOrders((prev) => prev.filter((order) => order.socketID !== socketID));
   };
 
+  const orderOnWay = (socketID, msg) =>
+    socket.emit("orderOnTheWay", { socketID, msg });
+
   useEffect(() => {
     if (connected)
       socket.on("new_order", (msg) => setOrders((prev) => [...prev, msg]));
   }, [connected, socket]);
 
-  return [[orders, acceptedOrders], [handleOrder]]; // [[STATES], [HANDLERS]]
+  return [
+    [orders, acceptedOrders],
+    [handleOrderAcceptation, orderOnWay],
+  ]; // [[STATES], [HANDLERS]]
 };
 export default useOrders;
