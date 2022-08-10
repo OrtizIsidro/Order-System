@@ -1,4 +1,4 @@
-const DATA_BASE_URL =
-  "mongodb+srv://isidro_ortiz:JieXk25cQAiftcZK@cluster0.upqftnc.mongodb.net/?retryWrites=true&w=majority";
+require("dotenv").config();
+const DATA_BASE_URL = process.env.DATA_BASE_URL;
 
 module.exports = { DATA_BASE_URL };

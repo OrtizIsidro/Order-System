@@ -1,5 +1,5 @@
 # Order-System
-system to manage large client orders for major food companys
+system to manage large client orders for small food companys
 This project is composed by three parts
 
 -Customers Order application:
