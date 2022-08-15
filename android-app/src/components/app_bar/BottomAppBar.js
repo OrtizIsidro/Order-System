@@ -1,12 +1,13 @@
 import { AppBar, Chip, Icon, IconButton } from "@react-native-material/core";
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigate } from "react-router-native";
+import { navigation } from "../../data/navigation";
+const { home, delivery, cart } = navigation;
 
-const BottomAppBar = ({ amount, navigation }) => {
-  const { home, delivery, cart } = navigation;
+const BottomAppBar = ({ amount, show }) => {
   const navigate = useNavigate();
   return (
-    <View>
+    <View style={{ display: show ? "flex" : "none" }}>
       <AppBar
         style={styles.head}
         {...styles.appbar_head}

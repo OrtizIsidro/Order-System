@@ -1,13 +1,13 @@
 import { Button, Icon, IconButton } from "@react-native-material/core";
 import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 import { useNavigate } from "react-router-native";
+import { navigation } from "../data/navigation";
 
 const Cart = ({
   cart,
   total,
   subtractOneFromCart,
   addOneToCart,
-  navigation,
   removeFromCart,
 }) => {
   const { payment } = navigation;

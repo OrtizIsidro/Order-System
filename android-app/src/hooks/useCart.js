@@ -21,8 +21,7 @@ const useCart = () => {
   const total = calculateTotal(cart);
 
   return [
-    cart,
-    total,
+    [cart, total],
     [subtractOneFromCart, addOneToCart, removeFromCart, addToCart],
   ];
 };

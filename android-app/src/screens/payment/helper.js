@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   HStack,
   Icon,
@@ -9,6 +10,7 @@ import { Text, View } from "react-native";
 import { nanoid } from "nanoid";
 import "react-native-get-random-values";
 import CheckBox from "expo-checkbox";
+import TextField from "../../components/TextField";
 
 const CartItems = ({ items }) => {
   return items.map((item) => (
@@ -31,14 +33,16 @@ const MercadoPago = () => {
   );
 };
 
-const Efectivo = ({ setAmount }) => {
+const Efectivo = ({ setAmount, handleConfirm, handleCancel }) => {
   return (
     <View>
-      <Text>Con cuanto pagas?</Text>
-      <TextInput onChangeText={(value) => setAmount(value)} />
-      <HStack>
-        <Button title="Confirmar" />
-        <Button title="Cancelar" />
+      <TextField
+        label="Con cuanto pagas?"
+        onChangeText={(value) => setAmount(value)}
+      />
+      <HStack spacing={"auto"} style={{ marginHorizontal: 20 }}>
+        <Button title="Confirmar" onPress={handleConfirm} />
+        <Button title="Cancelar" onPress={handleCancel} />
       </HStack>
     </View>
   );
@@ -63,4 +67,27 @@ const CustomCheckBox = ({ options, handler, currentActive }) => {
     </View>
   );
 };
-export { CartItems, MercadoPago, Efectivo, CustomCheckBox };
+const TextFields = ({ form }) => {
+  const textFields = [
+    "nombre",
+    "calle",
+    "numeracion",
+    "entre calles",
+    "referencias",
+  ];
+  const values = {
+    "entre calles": "entreCalles",
+  };
+  return textFields.map((text) => {
+    const formValue = values[text] ? values[text] : text;
+    return (
+      <Box key={nanoid()}>
+        <TextField
+          label={text}
+          onChangeText={(value) => (form[formValue] = value)}
+        />
+      </Box>
+    );
+  });
+};
+export { CartItems, MercadoPago, Efectivo, CustomCheckBox, TextFields };

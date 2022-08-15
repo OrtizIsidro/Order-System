@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const useTimer = (accepted) => {
+const useTimer = () => {
   const initRef = useRef();
   const actualRef = useRef();
   const minutesRef = useRef();
@@ -27,10 +27,6 @@ const useTimer = (accepted) => {
       }, 1000);
     return () => clearInterval(timer);
   }, [activeTimer]);
-
-  useEffect(() => {
-    activateTimer(Date.now() + 30 * 60 * 1000);
-  }, [accepted]);
-  return [minutes, seconds];
+  return [minutes, seconds, activateTimer];
 };
 export default useTimer;

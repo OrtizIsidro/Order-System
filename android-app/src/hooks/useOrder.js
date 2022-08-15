@@ -7,8 +7,10 @@ const useOrder = () => {
   const [orderTaken, setOrderTaken] = useState(false);
   const [orderRequested, setOrderRequested] = useState(false);
   const response = useRef({});
+  const socketID = useRef();
 
   const requestOrder = (orderCart) => {
+    setOrderRequested(true);
     socket.emit("order", orderCart);
   };
 
@@ -19,12 +21,11 @@ const useOrder = () => {
         setOrderTaken(true);
         setOrderRequested(false);
       });
+    if (socket) socketID.current = socket.id;
   }, [connected, socket]);
 
   return [
-    orderTaken,
-    orderRequested,
-    response.current.accepted,
+    [orderTaken, orderRequested, response.current.accepted, socketID.current],
     [requestOrder],
   ];
 };

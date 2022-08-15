@@ -5,21 +5,24 @@ import Payment from "../screens/payment";
 import useBackAction from "../hooks/useBackAction";
 import AppBar from "../components/app_bar";
 import useOrder from "../hooks/useOrder";
-import useTimer from "../hooks/useTimer";
 import useCart from "../hooks/useCart";
 import { Route, Routes } from "react-router-native";
+import { paths } from "../data/navigation";
+import ModalOrderStatus from "../components/ModalOrderStatus";
+import Timer from "../components/Timer";
 const INITIAL_PATH = "/home";
 
-const HomeRouter = ({ navigation, paths }) => {
+const HomeRouter = () => {
   const { home, delivery, payment, cart: cart_path } = paths;
-  const [orderTaken, orderRequested, accepted, orderHandlers] = useOrder();
-  const [cart, total, cartHandlers] = useCart();
+  const [orderStates, orderHandlers] = useOrder();
+  const [orderTaken, orderRequested, accepted, socketID] = orderStates;
   const [requestOrder] = orderHandlers;
+
+  const [cartStates, cartHandlers] = useCart();
+  const [cart, total] = cartStates;
   const [subtractOne, addOne, remove, addToCart] = cartHandlers;
-  const [minutes, seconds] = useTimer(accepted);
 
   const CartProps = {
-    navigation,
     total,
     subtractOneFromCart: subtractOne,
     addOneToCart: addOne,
@@ -28,29 +31,28 @@ const HomeRouter = ({ navigation, paths }) => {
   };
 
   const PaymentProps = {
-    navigation,
     cart,
     total,
     requestOrder,
+    socketID,
   };
 
   const DeliveryProps = {
     isOrderAccepted: accepted,
     orderRequested,
     orderTaken,
-    minutes,
-    seconds,
+    accepted,
+    children: <Timer isOrderAccepted={accepted} orderTaken={orderTaken} />,
   };
 
   const MenuProps = {
-    navigation,
-    paths,
     addToCart,
   };
 
   useBackAction(INITIAL_PATH);
   return (
-    <AppBar navigation={navigation} accepted={accepted} cart={cart}>
+    <AppBar length={cart.length}>
+      <ModalOrderStatus showOn={orderTaken} accepted={accepted} />
       <Routes>
         <Route index path={home} element={<Menu {...MenuProps} />} />
         <Route path={cart_path} element={<Cart {...CartProps} />} />
